@@ -57,7 +57,10 @@ define(['IMSGlobal/jquery_2_1_1', 'OAT/util/html'], function($, html){
             renderLabels(id, $container, config, assetManager);
             
             //render rich text content in prompt
-            html.render($container.find('.prompt'));
+            //remove it to make it backward compatible ??
+            if($container.find('.prompt').length){
+                html.render($container.find('.prompt'));
+            }
         },
         renderChoices : function(id, container, config){
             renderChoices(id, $(container), config);
