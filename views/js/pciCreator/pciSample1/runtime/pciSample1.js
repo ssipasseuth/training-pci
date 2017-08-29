@@ -13,16 +13,16 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  *
- * Copyright (c) 2016 (original work) Open Assessment Technologies SA;
+ * Copyright (c) 2017 (original work) Open Assessment Technologies SA;
  *
  */
-define(['qtiCustomInteractionContext', 'IMSGlobal/jquery_2_1_1', 'trainingPci/runtime/js/renderer', 'OAT/util/event'], function(qtiCustomInteractionContext, $, renderer, event){
+define(['qtiCustomInteractionContext', 'IMSGlobal/jquery_2_1_1', 'pciSample1/runtime/js/renderer', 'OAT/util/event'], function(qtiCustomInteractionContext, $, renderer, event){
     'use strict';
 
-    var trainingPci = {
+    var pciSample1 = {
         id : -1,
         getTypeIdentifier : function(){
-            return 'trainingPci';
+            return 'pciSample1';
         },
         /**
          * Render the PCI : 
@@ -32,10 +32,11 @@ define(['qtiCustomInteractionContext', 'IMSGlobal/jquery_2_1_1', 'trainingPci/ru
          */
         initialize : function(id, dom, config, assetManager){
 
+            var self = this;
+
             //add method on(), off() and trigger() to the current object
             event.addEventMgr(this);
 
-            var _this = this;
             this.id = id;
             this.dom = dom;
             this.config = config || {};
@@ -47,8 +48,8 @@ define(['qtiCustomInteractionContext', 'IMSGlobal/jquery_2_1_1', 'trainingPci/ru
 
             //listening to dynamic configuration change
             this.on('levelchange', function(level){
-                _this.config.level = level;
-                renderer.renderChoices(_this.id, _this.dom, _this.config);
+                self.config.level = level;
+                renderer.renderChoices(self.id, self.dom, self.config);
             });
         },
         /**
@@ -127,5 +128,5 @@ define(['qtiCustomInteractionContext', 'IMSGlobal/jquery_2_1_1', 'trainingPci/ru
         }
     };
 
-    qtiCustomInteractionContext.register(trainingPci);
+    qtiCustomInteractionContext.register(pciSample1);
 });

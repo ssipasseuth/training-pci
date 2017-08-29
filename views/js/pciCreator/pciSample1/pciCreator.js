@@ -13,19 +13,19 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  *
- * Copyright (c) 2016 (original work) Open Assessment Technologies SA;
+ * Copyright (c) 2017 (original work) Open Assessment Technologies SA;
  *
  */
 define([
     'lodash',
-    'trainingPci/creator/widget/Widget',
-    'tpl!trainingPci/creator/tpl/markup'
+    'pciSample1/creator/widget/Widget',
+    'tpl!pciSample1/creator/tpl/markup'
 ], function(_, Widget, markupTpl){
     'use strict';
 
-    var _typeIdentifier = 'trainingPci';
+    var _typeIdentifier = 'pciSample1';
 
-    var trainingPciCreator = {
+    var pciSample1Creator = {
         /**
          * (required) Get the typeIdentifier of the custom interaction
          * 
@@ -87,5 +87,5 @@ define([
 
     //since we assume we are in a tao context, there is no use to expose the a global object for lib registration
     //all libs should be declared here
-    return trainingPciCreator;
+    return pciSample1Creator;
 });

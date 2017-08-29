@@ -13,18 +13,18 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  *
- * Copyright (c) 2016 (original work) Open Assessment Technologies SA;
+ * Copyright (c) 2017 (original work) Open Assessment Technologies SA;
  *
  */
 define([
     'taoQtiItem/qtiCreator/widgets/interactions/customInteraction/Widget',
-    'trainingPci/creator/widget/states/states'
+    'pciSample1/creator/widget/states/states'
 ], function(Widget, states){
     'use strict';
 
-    var trainingPciWidget = Widget.clone();
+    var pciSample1Widget = Widget.clone();
 
-    trainingPciWidget.initCreator = function(){
+    pciSample1Widget.initCreator = function(){
 
         this.registerStates(states);
 
@@ -34,5 +34,5 @@ define([
         this.element.getResponseDeclaration().setTemplate('NONE');
     };
     
-    return trainingPciWidget;
+    return pciSample1Widget;
 });

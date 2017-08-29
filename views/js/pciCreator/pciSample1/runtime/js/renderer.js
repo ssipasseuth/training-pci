@@ -13,7 +13,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  *
- * Copyright (c) 2016 (original work) Open Assessment Technologies SA;
+ * Copyright (c) 2017 (original work) Open Assessment Technologies SA;
  *
  */
 define(['IMSGlobal/jquery_2_1_1', 'OAT/util/html'], function($, html){
@@ -44,8 +44,8 @@ define(['IMSGlobal/jquery_2_1_1', 'OAT/util/html'], function($, html){
         var $labelMin = $('<span>', {'class' : 'likert-label likert-label-min'}).html(config['label-min']);
         var $labelMax = $('<span>', {'class' : 'likert-label likert-label-max'}).html(config['label-max']);
         
-        $labelMin.append($('<img>', {src: assetManager.resolve('trainingPci/runtime/assets/ThumbDown.png')}).css({top: 6, marginLeft:12}));
-        $labelMax.prepend($('<img>', {src: assetManager.resolve('trainingPci/runtime/assets/ThumbUp.png')}).css({top: 2, marginRight:12}));
+        $labelMin.append($('<img>', {src: assetManager.resolve('pciSample1/runtime/assets/ThumbDown.png')}).css({top: 6, marginLeft:12}));
+        $labelMax.prepend($('<img>', {src: assetManager.resolve('pciSample1/runtime/assets/ThumbUp.png')}).css({top: 2, marginRight:12}));
         
         $ul.before($labelMin);
         $ul.after($labelMax);

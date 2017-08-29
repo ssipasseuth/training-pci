@@ -1,8 +1,8 @@
 {
-    "typeIdentifier": "trainingPci",
+    "typeIdentifier": "pciSample1",
     "label": "Likert Scale Sample",
     "short": "Sample 1",
-    "description": "A simple implementation of likert scale for PCI training pupose.",
+    "description": "A simple implementation of likert scale for PCI training purpose.",
     "version": "0.1.0",
     "author": "Sam Sipasseuth",
     "email": "sam@taotesting.com",
@@ -15,14 +15,14 @@
         "cardinality": "single"
     },
     "runtime" : {
-        "hook" : "./runtime/trainingPci.js",
+        "hook" : "./runtime/pciSample1.js",
         "libraries" : [
             "IMSGlobal/jquery_2_1_1",
             "./runtime/js/renderer.js"
         ],
         "stylesheets" : [
             "./runtime/css/base.css",
-            "./runtime/css/trainingPci.css"
+            "./runtime/css/pciSample1.css"
         ],
         "mediaFiles" : [
             "./runtime/assets/ThumbDown.png",
