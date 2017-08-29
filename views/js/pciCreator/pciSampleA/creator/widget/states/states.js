@@ -17,22 +17,11 @@
  *
  */
 define([
-    'taoQtiItem/qtiCreator/widgets/interactions/customInteraction/Widget',
-    'pciSample1/creator/widget/states/states'
-], function(Widget, states){
+    'taoQtiItem/qtiCreator/widgets/states/factory',
+    'taoQtiItem/qtiCreator/widgets/interactions/customInteraction/states/states',
+    'pciSampleA/creator/widget/states/Question',
+    'pciSampleA/creator/widget/states/Answer'
+], function(factory, states){
     'use strict';
-
-    var pciSample1Widget = Widget.clone();
-
-    pciSample1Widget.initCreator = function(){
-
-        this.registerStates(states);
-
-        Widget.initCreator.call(this);
-
-        //for existing likert scale PCI, ensure that the rp template is always NONE
-        this.element.getResponseDeclaration().setTemplate('NONE');
-    };
-    
-    return pciSample1Widget;
+    return factory.createBundle(states, arguments, ['correct', 'map']);
 });

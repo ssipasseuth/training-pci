@@ -16,13 +16,13 @@
  * Copyright (c) 2017 (original work) Open Assessment Technologies SA;
  *
  */
-define(['qtiCustomInteractionContext', 'IMSGlobal/jquery_2_1_1', 'pciSample1/runtime/js/renderer', 'OAT/util/event'], function(qtiCustomInteractionContext, $, renderer, event){
+define(['qtiCustomInteractionContext', 'IMSGlobal/jquery_2_1_1', 'pciSampleA/runtime/js/renderer', 'OAT/util/event'], function(qtiCustomInteractionContext, $, renderer, event){
     'use strict';
 
-    var pciSample1 = {
+    var pciSampleA = {
         id : -1,
         getTypeIdentifier : function(){
-            return 'pciSample1';
+            return 'pciSampleA';
         },
         /**
          * Render the PCI : 
@@ -128,5 +128,5 @@ define(['qtiCustomInteractionContext', 'IMSGlobal/jquery_2_1_1', 'pciSample1/run
         }
     };
 
-    qtiCustomInteractionContext.register(pciSample1);
+    qtiCustomInteractionContext.register(pciSampleA);
 });

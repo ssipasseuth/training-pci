@@ -26,7 +26,7 @@ define([
     'taoQtiItem/runner/qtiItemRunner',
     'taoQtiItem/portableElementRegistry/ciRegistry',
     'taoQtiItem/portableElementRegistry/provider/localManifestProvider',
-    'text!trainingPci/test/pciSample1/data/likert_triple/qti.xml'
+    'text!trainingPci/test/pciSampleA/data/likert_triple/qti.xml'
 ], function ($, _, url, assetManagerFactory, assetStrategies, portableAssetStrategy, qtiItemRunner, ciRegistry, pciTestProvider, likertTripleXml) {
 
     'use strict';
@@ -63,7 +63,7 @@ define([
     /**
      * manually register the pci from its manifest
      */
-    pciTestProvider.addManifestPath('pciSample1', 'trainingPci/pciCreator/pciSample1/pciCreator.json');
+    pciTestProvider.addManifestPath('pciSampleA', 'trainingPci/pciCreator/pciSampleA/pciCreator.json');
     ciRegistry.resetProviders();
     ciRegistry.registerProvider(pciTestProvider.getModuleName());
 
@@ -77,7 +77,7 @@ define([
         assert.equal($container.children().length, 0, 'the container has no children');
 
         parseXml(likertTripleXml).then(function (itemData) {
-            var assetManager = getAssetManager('/trainingPci/views/js/test/pciSample1/data/likert_triple/');
+            var assetManager = getAssetManager('/trainingPci/views/js/test/pciSampleA/data/likert_triple/');
             var runner = qtiItemRunner('qti', itemData, {assetManager: assetManager})
                 .on('render', function () {
 
@@ -85,7 +85,7 @@ define([
                     assert.equal($container.children('.qti-item').length, 1, 'the container contains a the root element .qti-item');
                     assert.equal($container.find('.qti-interaction').length, 3, 'the container contains 3 interactions .qti-interaction');
                     assert.equal($container.find('.qti-interaction.qti-customInteraction').length, 3, 'the container contains 3 custom interactions');
-                    assert.equal($container.find('.qti-customInteraction .pciSample1').length, 3, 'the container contains 3 likert interactions');
+                    assert.equal($container.find('.qti-customInteraction .pciSampleA').length, 3, 'the container contains 3 likert interactions');
                     assert.equal($container.find('.qti-customInteraction .prompt').length, 3, 'the interaction contains 3 prompts');
 
                     QUnit.start();
@@ -109,7 +109,7 @@ define([
         assert.equal($container.children().length, 0, 'the container has no children');
 
         parseXml(likertTripleXml).then(function (itemData) {
-            var assetManager = getAssetManager('/trainingPci/views/js/test/pciSample1/data/likert_triple/');
+            var assetManager = getAssetManager('/trainingPci/views/js/test/pciSampleA/data/likert_triple/');
             var runner = qtiItemRunner('qti', itemData, {assetManager: assetManager})
                 .on('render', function () {
 
@@ -163,7 +163,7 @@ define([
         assert.equal($container.children().length, 0, 'the container has no children');
 
         parseXml(likertTripleXml).then(function (itemData) {
-            var assetManager = getAssetManager('/trainingPci/views/js/test/pciSample1/data/likert_triple/');
+            var assetManager = getAssetManager('/trainingPci/views/js/test/pciSampleA/data/likert_triple/');
             var runner = qtiItemRunner('qti', itemData, {assetManager: assetManager})
                 .on('render', function () {
 
@@ -207,7 +207,7 @@ define([
         assert.equal($container.children().length, 0, 'the container has no children');
 
         parseXml(likertTripleXml).then(function (itemData) {
-            var assetManager = getAssetManager('/trainingPci/views/js/test/pciSample1/data/likert_triple/');
+            var assetManager = getAssetManager('/trainingPci/views/js/test/pciSampleA/data/likert_triple/');
             qtiItemRunner('qti', itemData, {assetManager: assetManager})
                 .on('render', function () {
                     this.setState({

@@ -23,17 +23,17 @@ namespace oat\trainingPci\scripts\install;
 use oat\taoQtiItem\model\portableElement\action\RegisterPortableElement;
 
 /**
- * Register the PCI "pciSample1" from its source directory
+ * Register the PCI "pciSampleA" from its source directory
  *
  * Sample usage:
- * sudo -u www-data php index.php 'oat\trainingPci\scripts\install\RegisterPciSample1'
+ * sudo -u www-data php index.php 'oat\trainingPci\scripts\install\RegisterPciSampleA'
  *
  * @package oat\trainingPci\scripts\install
  */
-class RegisterPciSample1 extends RegisterPortableElement
+class RegisterPciSampleA extends RegisterPortableElement
 {
     protected function getSourceDirectory(){
         $viewDir = \common_ext_ExtensionsManager::singleton()->getExtensionById('trainingPci')->getConstant('DIR_VIEWS');
-        return $viewDir.implode(DIRECTORY_SEPARATOR, ['js', 'pciCreator', 'pciSample1']);
+        return $viewDir.implode(DIRECTORY_SEPARATOR, ['js', 'pciCreator', 'pciSampleA']);
     }
 }

@@ -18,14 +18,14 @@
  */
 define([
     'lodash',
-    'pciSample1/creator/widget/Widget',
-    'tpl!pciSample1/creator/tpl/markup'
+    'pciSampleA/creator/widget/Widget',
+    'tpl!pciSampleA/creator/tpl/markup'
 ], function(_, Widget, markupTpl){
     'use strict';
 
-    var _typeIdentifier = 'pciSample1';
+    var _typeIdentifier = 'pciSampleA';
 
-    var pciSample1Creator = {
+    var pciSampleACreator = {
         /**
          * (required) Get the typeIdentifier of the custom interaction
          * 
@@ -87,5 +87,5 @@ define([
 
     //since we assume we are in a tao context, there is no use to expose the a global object for lib registration
     //all libs should be declared here
-    return pciSample1Creator;
+    return pciSampleACreator;
 });

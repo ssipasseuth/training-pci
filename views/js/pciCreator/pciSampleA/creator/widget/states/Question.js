@@ -22,7 +22,7 @@ define([
     'taoQtiItem/qtiCreator/widgets/helpers/formElement',
     'taoQtiItem/qtiCreator/editor/simpleContentEditableElement',
     'taoQtiItem/qtiCreator/editor/containerEditor',
-    'tpl!pciSample1/creator/tpl/propertiesForm',
+    'tpl!pciSampleA/creator/tpl/propertiesForm',
     'lodash',
     'jquery'
 ], function(stateFactory, Question, formElement, simpleEditor, containerEditor, formTpl, _, $){

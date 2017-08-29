@@ -1,7 +1,7 @@
 {
-    "typeIdentifier": "pciSample1",
+    "typeIdentifier": "pciSampleA",
     "label": "Likert Scale Sample",
-    "short": "Sample 1",
+    "short": "Sample A",
     "description": "A simple implementation of likert scale for PCI training purpose.",
     "version": "0.1.0",
     "author": "Sam Sipasseuth",
@@ -15,14 +15,14 @@
         "cardinality": "single"
     },
     "runtime" : {
-        "hook" : "./runtime/pciSample1.js",
+        "hook" : "./runtime/pciSampleA.js",
         "libraries" : [
             "IMSGlobal/jquery_2_1_1",
             "./runtime/js/renderer.js"
         ],
         "stylesheets" : [
             "./runtime/css/base.css",
-            "./runtime/css/pciSample1.css"
+            "./runtime/css/pciSampleA.css"
         ],
         "mediaFiles" : [
             "./runtime/assets/ThumbDown.png",
