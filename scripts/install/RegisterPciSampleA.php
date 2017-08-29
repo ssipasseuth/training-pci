@@ -14,30 +14,18 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  *
- * Copyright (c) 2015 (original work) Open Assessment Technologies SA;
+ * Copyright (c) 2017 (original work) Open Assessment Technologies SA;
  *
- *
- */
+ * */
 
-namespace oat\trainingPci\scripts\update;
+namespace oat\trainingPci\scripts\install;
 
-use oat\trainingPci\scripts\install\RegisterPciSampleA;
+use oat\taoQtiItem\model\portableElement\action\RegisterPortableElement;
 
-class Updater extends \common_ext_ExtensionUpdater
+class RegisterPciSampleA extends RegisterPortableElement
 {
-
-    /**
-     *
-     * @param string $currentVersion
-     * @return string $versionUpdatedTo
-     */
-    public function update($initialVersion) 
-    {
-        $this->setVersion('0.1.0');
-
-        if ($this->isVersion('0.1.0')) {
-            call_user_func(new RegisterPciSampleA(), ['0.1.0']);
-            $this->setVersion('0.2.0');
-        }
+    protected function getSourceDirectory(){
+        $viewDir = \common_ext_ExtensionsManager::singleton()->getExtensionById('trainingPci')->getConstant('DIR_VIEWS');
+        return $viewDir.implode(DIRECTORY_SEPARATOR, ['js', 'pciCreator', 'pciSampleA']);
     }
 }

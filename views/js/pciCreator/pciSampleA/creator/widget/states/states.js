@@ -1,5 +1,4 @@
-<?php
-/**
+/*
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
  * as published by the Free Software Foundation; under version 2
@@ -14,30 +13,14 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  *
- * Copyright (c) 2015 (original work) Open Assessment Technologies SA;
- *
+ * Copyright (c) 2017 (original work) Open Assessment Technologies SA;
  *
  */
-
-namespace oat\trainingPci\scripts\update;
-
-use oat\trainingPci\scripts\install\RegisterPciSampleA;
-
-class Updater extends \common_ext_ExtensionUpdater
-{
-
-    /**
-     *
-     * @param string $currentVersion
-     * @return string $versionUpdatedTo
-     */
-    public function update($initialVersion) 
-    {
-        $this->setVersion('0.1.0');
-
-        if ($this->isVersion('0.1.0')) {
-            call_user_func(new RegisterPciSampleA(), ['0.1.0']);
-            $this->setVersion('0.2.0');
-        }
-    }
-}
+define([
+    'taoQtiItem/qtiCreator/widgets/states/factory',
+    'taoQtiItem/qtiCreator/widgets/interactions/customInteraction/states/states',
+    'pciSampleA/creator/widget/states/Question'
+], function(factory, states){
+    'use strict';
+    return factory.createBundle(states, arguments, ['answer', 'correct', 'map']);
+});
