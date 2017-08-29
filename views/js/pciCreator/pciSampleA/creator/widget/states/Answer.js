@@ -17,22 +17,23 @@
  *
  */
 define([
-    'taoQtiItem/qtiCreator/widgets/interactions/customInteraction/Widget',
-    'pciSampleA/creator/widget/states/states'
-], function(Widget, states){
+    'taoQtiItem/qtiCreator/widgets/states/factory',
+    'taoQtiItem/qtiCreator/widgets/interactions/states/Answer',
+    'taoQtiItem/qtiCreator/widgets/interactions/helpers/answerState',
+    'taoQtiItem/qtiCreator/widgets/helpers/content'
+], function(stateFactory, Answer, answerStateHelper){
     'use strict';
 
-    var pciSampleAWidget = Widget.clone();
+    var InteractionStateAnswer = stateFactory.extend(Answer, function initAnswerState(){
+        this.widget.$original.find('.likert input').prop('disabled', 'disabled');
+    }, function exitAnswerState(){
+        this.widget.$original.find('.likert input').removeProp('disabled');
+    });
 
-    pciSampleAWidget.initCreator = function(){
+    InteractionStateAnswer.prototype.initResponseForm = function initResponseForm(){
 
-        this.registerStates(states);
-
-        Widget.initCreator.call(this);
-
-        //for existing likert scale PCI, ensure that the rp template is always NONE
-        this.element.getResponseDeclaration().setTemplate('NONE');
+        answerStateHelper.initResponseForm(this.widget, {rpTemplates : ['CUSTOM', 'NONE']});
     };
-    
-    return pciSampleAWidget;
+
+    return InteractionStateAnswer;
 });

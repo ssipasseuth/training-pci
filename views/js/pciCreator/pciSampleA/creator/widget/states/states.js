@@ -19,8 +19,9 @@
 define([
     'taoQtiItem/qtiCreator/widgets/states/factory',
     'taoQtiItem/qtiCreator/widgets/interactions/customInteraction/states/states',
-    'pciSampleA/creator/widget/states/Question'
+    'pciSampleA/creator/widget/states/Question',
+    'pciSampleA/creator/widget/states/Answer'
 ], function(factory, states){
     'use strict';
-    return factory.createBundle(states, arguments, ['answer', 'correct', 'map']);
+    return factory.createBundle(states, arguments, ['correct', 'map']);
 });

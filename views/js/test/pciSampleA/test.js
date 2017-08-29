@@ -82,11 +82,112 @@ define([
                 .on('render', function () {
 
                     assert.equal($container.children().length, 1, 'the container a elements');
-                    assert.equal($container.find('.qti-interaction.qti-customInteraction').length, 1, 'the container contains 3 custom interactions');
-                    assert.equal($container.find('.qti-customInteraction .pciSampleA').length, 1, 'the container contains 3 likert interactions');
+                    assert.equal($container.children('.qti-item').length, 1, 'the container contains a the root element .qti-item');
+                    assert.equal($container.find('.qti-interaction').length, 3, 'the container contains 3 interactions .qti-interaction');
+                    assert.equal($container.find('.qti-interaction.qti-customInteraction').length, 3, 'the container contains 3 custom interactions');
+                    assert.equal($container.find('.qti-customInteraction .pciSampleA').length, 3, 'the container contains 3 likert interactions');
+                    assert.equal($container.find('.qti-customInteraction .prompt').length, 3, 'the interaction contains 3 prompts');
 
                     QUnit.start();
                     runner.clear();
+                })
+                .on('error', function (error) {
+                    $('#error-display').html(error);
+                })
+                .init()
+                .render($container);
+        });
+    });
+
+    /**
+     * Test test taker interaction and the obtained response
+     */
+    QUnit.asyncTest('response', function (assert) {
+
+        var $container = $('#' + outerContainerId);
+        assert.equal($container.length, 1, 'the item container exists');
+        assert.equal($container.children().length, 0, 'the container has no children');
+
+        parseXml(likertTripleXml).then(function (itemData) {
+            var assetManager = getAssetManager('/trainingPci/views/js/test/pciSampleA/data/likert_triple/');
+            var runner = qtiItemRunner('qti', itemData, {assetManager: assetManager})
+                .on('render', function () {
+
+                    var self = this;
+
+                    //simulate a click to the third choice of the second PCI
+                    $('input:radio[name=likert2]').get(2).click();
+
+                    _.defer(function(){
+                        assert.equal($('input:radio[name=likert1]:checked').val(), undefined, 'likert 1 state untouched');
+                        assert.equal($('input:radio[name=likert2]:checked').val(), '3', 'likert 2 state set');
+                        assert.equal($('input:radio[name=likert3]:checked').val(), undefined, 'likert 3 state untouched');
+
+                        assert.deepEqual(self.getResponses(), {
+                            likert1: {
+                                base: {
+                                    integer: 0
+                                }
+                            },
+                            likert2: {
+                                base: {
+                                    integer: 3
+                                }
+                            },
+                            likert3: {
+                                base: {
+                                    integer: 0
+                                }
+                            }
+                        }, 'state ok');
+
+                        QUnit.start();
+                        runner.clear();
+                    });
+                })
+                .on('error', function (error) {
+                    $('#error-display').html(error);
+                })
+                .init()
+                .render($container);
+        });
+    });
+
+    /**
+     * Test the state recovery, essential behaviour when navigating the test flow
+     */
+    QUnit.asyncTest('state', function (assert) {
+
+        var $container = $('#' + fixtureContainerId);
+        assert.equal($container.length, 1, 'the item container exists');
+        assert.equal($container.children().length, 0, 'the container has no children');
+
+        parseXml(likertTripleXml).then(function (itemData) {
+            var assetManager = getAssetManager('/trainingPci/views/js/test/pciSampleA/data/likert_triple/');
+            var runner = qtiItemRunner('qti', itemData, {assetManager: assetManager})
+                .on('render', function () {
+
+                    var self = this;
+
+                    this.setState({
+                        likert1: {response: {base: {integer: 1}}},
+                        likert2: {response: {base: {integer: 3}}}
+                    });
+
+                    _.delay(function(){
+                        assert.equal($('input:radio[name=likert1]:checked').val(), '1', 'likert 1 state set');
+                        assert.equal($('input:radio[name=likert2]:checked').val(), '3', 'likert 2 state set');
+                        assert.equal($('input:radio[name=likert3]:checked').val(), undefined, 'likert 3 state untouched');
+
+                        assert.deepEqual(self.getState(), {
+                            likert1: {response: {base: {integer: 1}}},
+                            likert2: {response: {base: {integer: 3}}},
+                            likert3: {response: {base: {integer: 0}}},
+                        }, 'state ok');
+
+                        QUnit.start();
+                        runner.clear();
+                    }, 100);
                 })
                 .on('error', function (error) {
                     $('#error-display').html(error);
@@ -109,6 +210,10 @@ define([
             var assetManager = getAssetManager('/trainingPci/views/js/test/pciSampleA/data/likert_triple/');
             qtiItemRunner('qti', itemData, {assetManager: assetManager})
                 .on('render', function () {
+                    this.setState({
+                        likert1: {response: {base: {integer: 1}}},
+                        likert2: {response: {base: {integer: 3}}}
+                    });
                     QUnit.start();
                 })
                 .on('error', function (error) {

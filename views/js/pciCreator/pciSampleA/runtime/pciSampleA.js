@@ -16,7 +16,7 @@
  * Copyright (c) 2017 (original work) Open Assessment Technologies SA;
  *
  */
-define(['qtiCustomInteractionContext', 'OAT/util/event'], function(qtiCustomInteractionContext, event){
+define(['qtiCustomInteractionContext', 'IMSGlobal/jquery_2_1_1', 'pciSampleA/runtime/js/renderer', 'OAT/util/event'], function(qtiCustomInteractionContext, $, renderer, event){
     'use strict';
 
     var pciSampleA = {
@@ -32,10 +32,25 @@ define(['qtiCustomInteractionContext', 'OAT/util/event'], function(qtiCustomInte
          */
         initialize : function(id, dom, config, assetManager){
 
+            var self = this;
+
             //add method on(), off() and trigger() to the current object
             event.addEventMgr(this);
 
-            console.log('PCI initialized');
+            this.id = id;
+            this.dom = dom;
+            this.config = config || {};
+
+            renderer.render(this.id, this.dom, this.config, assetManager);
+
+            //tell the rendering engine that I am ready
+            qtiCustomInteractionContext.notifyReady(this);
+
+            //listening to dynamic configuration change
+            this.on('levelchange', function(level){
+                self.config.level = level;
+                renderer.renderChoices(self.id, self.dom, self.config);
+            });
         },
         /**
          * Programmatically set the response following the json schema described in
@@ -46,6 +61,10 @@ define(['qtiCustomInteractionContext', 'OAT/util/event'], function(qtiCustomInte
          */
         setResponse : function(response){
 
+            var $container = $(this.dom),
+                value = response && response.base ? parseInt(response.base.integer) : -1;
+
+            $container.find('input[value="' + value + '"]').prop('checked', true);
         },
         /**
          * Get the response in the json format described in
@@ -56,7 +75,10 @@ define(['qtiCustomInteractionContext', 'OAT/util/event'], function(qtiCustomInte
          */
         getResponse : function(){
 
-            return {base : {integer : 0}};
+            var $container = $(this.dom),
+                value = parseInt($container.find('input:checked').val()) || 0;
+
+            return {base : {integer : value}};
         },
         /**
          * Remove the current response set in the interaction
@@ -66,6 +88,9 @@ define(['qtiCustomInteractionContext', 'OAT/util/event'], function(qtiCustomInte
          */
         resetResponse : function(){
 
+            var $container = $(this.dom);
+
+            $container.find('input').prop('checked', false);
         },
         /**
          * Reverse operation performed by render()

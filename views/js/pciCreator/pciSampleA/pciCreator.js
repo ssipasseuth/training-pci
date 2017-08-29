@@ -50,7 +50,11 @@ define([
          * @returns {Object}
          */
         getDefaultProperties : function(pci){
-            return {};
+            return {
+                level : 5,
+                'label-min' : 'min',
+                'label-max' : 'max'
+            };
         },
         /**
          * (optional) Callback to execute on the 
@@ -59,6 +63,8 @@ define([
          * @returns {Object}
          */
         afterCreate : function(pci){
+            //always set the NONE response processing mode to likert scale
+            pci.getResponseDeclaration().setTemplate('NONE');
         },
         /**
          * (required) Gives the qti pci xml template 
@@ -74,6 +80,7 @@ define([
          * @returns {function} handlebar template
          */
         getMarkupData : function(pci, defaultData){
+            defaultData.prompt = pci.data('prompt');
             return defaultData;
         }
     };

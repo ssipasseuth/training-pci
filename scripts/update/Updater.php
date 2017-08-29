@@ -39,5 +39,10 @@ class Updater extends \common_ext_ExtensionUpdater
             call_user_func(new RegisterPciSampleA(), ['0.1.0']);
             $this->setVersion('0.2.0');
         }
+
+        if ($this->isVersion('0.2.0')) {
+            call_user_func(new RegisterPciSampleA(), ['0.2.0']);
+            $this->setVersion('0.3.0');
+        }
     }
 }
