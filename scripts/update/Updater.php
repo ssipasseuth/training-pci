@@ -21,8 +21,6 @@
 
 namespace oat\trainingPci\scripts\update;
 
-use oat\trainingPci\scripts\install\RegisterpciSampleA;
-
 class Updater extends \common_ext_ExtensionUpdater
 {
 

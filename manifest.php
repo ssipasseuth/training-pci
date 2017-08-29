@@ -18,7 +18,6 @@
  *
  *
  */
-use oat\trainingPci\scripts\install\RegisterPciSampleA;
 
 return array(
     'name' => 'trainingPci',
@@ -37,7 +36,6 @@ return array(
     ),
     'install' => array(
         'php'	=> array(
-			RegisterPciSampleA::class
 		)
     ),
     'update' => 'oat\\trainingPci\\scripts\\update\\Updater',
