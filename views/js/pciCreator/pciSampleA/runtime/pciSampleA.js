@@ -16,7 +16,7 @@
  * Copyright (c) 2017 (original work) Open Assessment Technologies SA;
  *
  */
-define(['qtiCustomInteractionContext', 'IMSGlobal/jquery_2_1_1', 'pciSampleA/runtime/js/renderer', 'OAT/util/event'], function(qtiCustomInteractionContext, $, renderer, event){
+define(['qtiCustomInteractionContext', 'pciSampleA/runtime/js/jquery_2_1_1_amd', 'pciSampleA/runtime/js/renderer', 'OAT/util/event'], function(qtiCustomInteractionContext, $, renderer, event){
     'use strict';
 
     var pciSampleA = {
