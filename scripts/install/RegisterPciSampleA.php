@@ -22,6 +22,14 @@ namespace oat\trainingPci\scripts\install;
 
 use oat\taoQtiItem\model\portableElement\action\RegisterPortableElement;
 
+/**
+ * Script to register the PCI "pciSampleA"
+ *
+ * Usage:
+ * sudo -u www-data php index.php '\oat\trainingPci\scripts\install\RegisterPciSampleA'
+ *
+ * @package oat\trainingPci\scripts\install
+ */
 class RegisterPciSampleA extends RegisterPortableElement
 {
     protected function getSourceDirectory(){
