@@ -40,6 +40,7 @@ define(['qtiCustomInteractionContext', 'IMSGlobal/jquery_2_1_1', 'pciSampleA/run
             this.id = id;
             this.dom = dom;
             this.config = config || {};
+            this.startTime = Date.now();
 
             renderer.render(this.id, this.dom, this.config, assetManager);
 
@@ -78,7 +79,18 @@ define(['qtiCustomInteractionContext', 'IMSGlobal/jquery_2_1_1', 'pciSampleA/run
             var $container = $(this.dom),
                 value = parseInt($container.find('input:checked').val()) || 0;
 
-            return {base : {integer : value}};
+            return {
+                record : [
+                    {
+                        name : 'response',
+                        base : {integer : value}
+                    },
+                    {
+                        name : 'time',
+                        base : {integer : parseInt((Date.now() - this.startTime))}
+                    }
+                ]
+            };
         },
         /**
          * Remove the current response set in the interaction

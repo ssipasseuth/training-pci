@@ -3,7 +3,7 @@
     "label": "Likert Scale Sample",
     "short": "Sample A",
     "description": "A simple implementation of likert scale for PCI training purpose.",
-    "version": "0.3.0",
+    "version": "1.0.0",
     "author": "Sam Sipasseuth",
     "email": "sam@taotesting.com",
     "tags": [
@@ -11,8 +11,7 @@
         "likert"
     ],
     "response": {
-        "baseType": "integer",
-        "cardinality": "single"
+        "cardinality": "record"
     },
     "runtime" : {
         "hook" : "./runtime/pciSampleA.js",
