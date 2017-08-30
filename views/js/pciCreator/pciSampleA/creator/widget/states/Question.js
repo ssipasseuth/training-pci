@@ -23,12 +23,14 @@ define([
 ], function(stateFactory, Question, formTpl){
     'use strict';
 
-    var LikertInteractionStateQuestion = stateFactory.extend(Question, function(){
+    var LikertInteractionStateQuestion = stateFactory.extend(Question, function init(){
 
+        //TODO init components to allow editing the question
         console.log('entered question editing state');
 
-    }, function(){
+    }, function exit(){
 
+        //TODO clear the components initialized me
         console.log('exited question editing state');
     });
 

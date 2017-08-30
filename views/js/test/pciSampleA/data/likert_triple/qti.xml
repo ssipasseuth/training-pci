@@ -21,11 +21,7 @@
                     <pci:libraries></pci:libraries>
                 </pci:resources>
 
-                <pci:properties>
-                    <pci:entry key="level">5</pci:entry>
-                    <pci:entry key="label-min">Not at all</pci:entry>
-                    <pci:entry key="label-max">Very much</pci:entry>
-                </pci:properties>
+                <pci:properties></pci:properties>
 
                 <pci:markup>
                     <html5:div class="pciSampleA">
